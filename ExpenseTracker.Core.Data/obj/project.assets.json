@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "ExpenseTracker.Core.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/ExpenseTracker.Core.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExpenseTracker.Core.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ExpenseTracker.Core.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ExpenseTracker.Core.Domain/ExpenseTracker.Core.Domain.csproj",
+      "msbuildProject": "../ExpenseTracker.Core.Domain/ExpenseTracker.Core.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "ExpenseTracker.Core.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\diogo\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\diogo\\source\\repos\\ExpenseTracker\\expense-tracker\\ExpenseTracker.Core.Domain\\ExpenseTracker.Core.Domain.csproj": {
+              "projectPath": "C:\\Users\\diogo\\source\\repos\\ExpenseTracker\\expense-tracker\\ExpenseTracker.Core.Domain\\ExpenseTracker.Core.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
