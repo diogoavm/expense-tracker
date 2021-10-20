@@ -1,30 +1,51 @@
 ﻿using ExpenseTracker.Core.Domain.Models;
 using ExpenseTracker.Core.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExpenseTracker.Core.Data.Repositories
 {
-    class ExpenseRepository : Expense, IExpense
+    public class ExpenseRepository : IExpenseRepository
     {
-        Task IExpense.DeleteExpenseAsync(Guid id)
+        private readonly RepositoryContext _context;
+
+        public ExpenseRepository(RepositoryContext context) 
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        Task<Expense> IExpense.GetAllAsync()
+        public async Task AddExpenseAsync(Expense expense)
         {
-            throw new NotImplementedException();
+            _context.Entry(expense).State = EntityState.Added;
+
+            await _context.SaveChangesAsync();
         }
 
-        Task<Expense> IExpense.GetExpenseByIdAsync(Guid id)
+        public async Task DeleteExpenseAsync(Guid id)
         {
-            throw new NotImplementedException();
+            _context.Entry(expense).State = EntityState.Deleted;
+
+            await _context.SaveChangesAsync();
         }
 
-        Task<Expense> IExpense.UpdateExpenseAsync(Guid id)
+        public async Task<IEnumerable<Expense>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Expenses.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Expense>> GetExpensesByCategory(ExpenseCategory category)
+        {
+            return await _context.Expenses.Where(c => c.Category == category).ToListAsync();
+        }
+
+        public async Task UpdateExpenseAsync(Expense expense)
+        {
+            _context.Entry(expense).State = EntityState.Modified;
+
+            await(_context.SaveChangesAsync());
         }
     }
 }

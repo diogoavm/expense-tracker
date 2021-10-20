@@ -1,16 +1,13 @@
+using ExpenseTracker.Core.Data.Repositories;
+using ExpenseTracker.Core.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ExpenseTracker.Web.Api
 {
@@ -26,8 +23,15 @@ namespace ExpenseTracker.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            services.AddDbContext<RepositoryContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:ExpenseTrackerDB"]));
 
-            services.AddControllers();
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
+
+            services.AddControllers().AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExpenseTracker.Web.Api", Version = "v1" });
