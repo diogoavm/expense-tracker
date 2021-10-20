@@ -1,0 +1,15 @@
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ExpenseTracker.Core.Domain.deps.json
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ExpenseTracker.Core.Domain.dll
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ref\ExpenseTracker.Core.Domain.dll
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ExpenseTracker.Core.Domain.pdb
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.csproj.AssemblyReference.cache
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.AssemblyInfo.cs
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.dll
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ref\ExpenseTracker.Core.Domain.dll
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.pdb
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ExpenseTracker.Core.Domain.runtimeconfig.json
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\bin\Debug\net5.0\ExpenseTracker.Core.Domain.runtimeconfig.dev.json
+C:\Users\diogo\source\repos\ExpenseTracker\expense-tracker\ExpenseTracker.Core.Domain\obj\Debug\net5.0\ExpenseTracker.Core.Domain.genruntimeconfig.cache
