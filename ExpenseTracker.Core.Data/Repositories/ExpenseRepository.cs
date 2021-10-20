@@ -12,7 +12,7 @@ namespace ExpenseTracker.Core.Data.Repositories
     {
         private readonly RepositoryContext _context;
 
-        public ExpenseRepository(RepositoryContext context) 
+        public ExpenseRepository(RepositoryContext context)
         {
             _context = context;
         }
@@ -26,7 +26,7 @@ namespace ExpenseTracker.Core.Data.Repositories
 
         public async Task DeleteExpenseAsync(Guid id)
         {
-            _context.Entry(expense).State = EntityState.Deleted;
+            _context.Expenses.Remove(new Expense() { Id = id });
 
             await _context.SaveChangesAsync();
         }
@@ -45,7 +45,7 @@ namespace ExpenseTracker.Core.Data.Repositories
         {
             _context.Entry(expense).State = EntityState.Modified;
 
-            await(_context.SaveChangesAsync());
+            await (_context.SaveChangesAsync());
         }
     }
 }
