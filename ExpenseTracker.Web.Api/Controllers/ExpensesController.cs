@@ -1,7 +1,6 @@
 ﻿using ExpenseTracker.Core.Domain.Models;
-using ExpenseTracker.Core.Domain.Repositories;
+using ExpenseTracker.Core.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,24 +11,17 @@ namespace ExpenseTracker.Web.Api.Controllers
     [ApiController]
     public class ExpensesController : ControllerBase
     {
-        readonly IExpenseRepository _repoWrapper;
+        readonly IExpenseService _expenseService;
 
-        public ExpensesController(IExpenseRepository repoWrapper)
+        public ExpensesController(IExpenseService expenseService)
         {
-            _repoWrapper = repoWrapper;
+            _expenseService = expenseService;
         }
         // GET: api/Employee
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            IEnumerable<Expense> expenses = await _repoWrapper.GetAllAsync();
-
-            float totalExpense = 0;
-
-            foreach (var item in expenses)
-            {
-                totalExpense += item.Value;
-            }
+            (IEnumerable<Expense> expenses, float totalExpense) = await _expenseService.GetAllAsync();
 
             return Ok(new { expenses, totalExpense });
         }
@@ -37,9 +29,7 @@ namespace ExpenseTracker.Web.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateExpense(Expense expense)
         {
-            expense.Id = Guid.NewGuid();
-
-            await _repoWrapper.AddExpenseAsync(expense);
+            await _expenseService.CreateExpense(expense);
 
             return Ok(expense);
         }
@@ -47,14 +37,7 @@ namespace ExpenseTracker.Web.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetExpensesByCategory(ExpenseCategory category)
         {
-            IEnumerable<Expense> expenses = await _repoWrapper.GetExpensesByCategory(category);
-
-            float totalExpense = 0;
-
-            foreach (var item in expenses)
-            {
-                totalExpense += item.Value;
-            }
+            (IEnumerable<Expense> expenses, float totalExpense) = await _expenseService.GetExpensesByCategory(category);
 
             return Ok(new { expenses, totalExpense });
         }

@@ -9,12 +9,12 @@ namespace ExpenseTracker.Core.Domain.Repositories
     {
         Task<IEnumerable<Expense>> GetAllAsync();
 
-        Task<IEnumerable<Expense>> GetExpensesByCategory(ExpenseCategory category);
+        Task<IEnumerable<Domain.Models.Expense>> GetExpensesByCategory(ExpenseCategory category);
 
         Task AddExpenseAsync(Expense expense);
 
-        Task DeleteExpenseAsync(Guid id);
+        Task<int> DeleteExpenseAsync(Guid id);
 
-        Task UpdateExpenseAsync(Expense expense);
+        Task<int> UpdateExpenseAsync(Expense expense);
     }
 }

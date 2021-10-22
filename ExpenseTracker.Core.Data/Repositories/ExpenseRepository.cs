@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Core.Domain.Models;
+﻿using ExpenseTracker.Core.Data.Models;
+using ExpenseTracker.Core.Domain.Models;
 using ExpenseTracker.Core.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,35 +18,38 @@ namespace ExpenseTracker.Core.Data.Repositories
             _context = context;
         }
 
-        public async Task AddExpenseAsync(Expense expense)
+        public async Task AddExpenseAsync(Domain.Models.Expense expense)
         {
-            _context.Entry(expense).State = EntityState.Added;
+            await _context.Expenses.AddAsync(expense.ToPersistenceModel());
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteExpenseAsync(Guid id)
+        public async Task<int> DeleteExpenseAsync(Guid id)
         {
-            _context.Expenses.Remove(new Expense() { Id = id });
+            Domain.Models.Expense expense = await _context.Expenses.Select(x => x.ToDomainModel()).FirstOrDefaultAsync();
 
-            await _context.SaveChangesAsync();
+            if(expense!=null)
+                _context.Expenses.Remove(expense.ToPersistenceModel());
+
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Expense>> GetAllAsync()
-        {
-            return await _context.Expenses.ToListAsync();
+        public async Task<IEnumerable<Domain.Models.Expense>> GetAllAsync()
+        { 
+            return await _context.Expenses.Select(x => x.ToDomainModel()).ToListAsync();
         }
 
-        public async Task<IEnumerable<Expense>> GetExpensesByCategory(ExpenseCategory category)
+        public async Task<IEnumerable<Domain.Models.Expense>> GetExpensesByCategory(ExpenseCategory category)
         {
-            return await _context.Expenses.Where(c => c.Category == category).ToListAsync();
+            return await _context.Expenses.Where(c => c.Category == category).Select(x => x.ToDomainModel()).ToListAsync();
         }
 
-        public async Task UpdateExpenseAsync(Expense expense)
+        public async Task<int> UpdateExpenseAsync(Domain.Models.Expense expense)
         {
-            _context.Entry(expense).State = EntityState.Modified;
+            _context.Expenses.Update(expense.ToPersistenceModel());
 
-            await (_context.SaveChangesAsync());
+            return await _context.SaveChangesAsync();
         }
     }
 }

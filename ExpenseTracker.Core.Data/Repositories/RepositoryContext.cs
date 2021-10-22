@@ -1,4 +1,4 @@
-﻿using ExpenseTracker.Core.Domain.Models;
+﻿using ExpenseTracker.Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Core.Data.Repositories

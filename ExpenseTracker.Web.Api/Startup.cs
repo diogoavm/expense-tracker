@@ -1,5 +1,7 @@
+using ExpenseTracker.Core.Data;
 using ExpenseTracker.Core.Data.Repositories;
 using ExpenseTracker.Core.Domain.Repositories;
+using ExpenseTracker.Core.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +29,7 @@ namespace ExpenseTracker.Web.Api
             services.AddDbContext<RepositoryContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:ExpenseTrackerDB"]));
 
+            services.AddScoped<IExpenseService, ExpenseService>();
             services.AddScoped<IExpenseRepository, ExpenseRepository>();
 
             services.AddControllers().AddJsonOptions(options =>
